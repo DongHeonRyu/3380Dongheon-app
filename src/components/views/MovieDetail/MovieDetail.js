@@ -4,6 +4,7 @@ import GridCards from "../GridCard/GridCard";
 import MovieInfo from "../MovieInfo/MovieInfo";
 import MainImage from "../Sections/MainImage";
 import { Row } from "antd";
+import Favorite from "../Favorite/Favorite";
 
 function MovieDetail(props) {
   console.log(props.match);
@@ -50,6 +51,10 @@ function MovieDetail(props) {
 
       {/* Body*/}
       <div style={{ width: "85%", margin: "1rem auto" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+         <Favorite></Favorite>
+        </div>
+
         {/* Movie Info*/}
 
         <MovieInfo movie={Movie} />
