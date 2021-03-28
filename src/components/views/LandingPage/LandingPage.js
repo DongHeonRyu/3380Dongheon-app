@@ -6,7 +6,7 @@ import GridCards from "../GridCard/GridCard";
 import { Row } from "antd";
 
 const LandingPage = (props) => {
-  const [Movies, setMovies] = useState([]); //배열로 값을받기 때문
+  const [Movies, setMovies] = useState([]);
   const [MainMovieImage, setMainMovieImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -17,15 +17,13 @@ const LandingPage = (props) => {
 
   const fetchMovies = (endpoint) => {
     fetch(endpoint)
-      .then((response) => response.json()) //응답을 json형태로 변경하여 then의 response에 반환
+      .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        setMovies([...Movies,...response.results]); //console로 찍어보면 results배열에 담겨서 데이터보내줌
-        //스프레드연산자를 사용하여 배열에 집어넣음
+        setMovies([...Movies, ...response.results]);
+
         setMainMovieImage(MainMovieImage || response.results[0]);
-        //로딩될때는 MainMovieImage값이 null이기 때문에 response.results[0]값이 들어오며
-        //그다음 loding button을 눌릴때마다 MainMovieImage즉 초기이미지로 고정이된다.
-        //안그러면 로그창에 오류발생
+
         setCurrentPage(response.page);
       });
   };
@@ -52,7 +50,7 @@ const LandingPage = (props) => {
       )}
 
       <div style={{ width: "85%", margin: "1rem auto" }}>
-        <h2>Movies by latest</h2>
+        <h2 style={{textAlign:"center"}}>Popular Movies Now</h2>
         <hr />
 
         {/*Movie Grid Cards */}
@@ -64,11 +62,13 @@ const LandingPage = (props) => {
             Movies.map((movie, index) => (
               <React.Fragment key={index}>
                 <GridCards
+                landingPage
                   image={
                     movie.poster_path
                       ? `${IMAGE_BASE_URL}w500/${movie.poster_path}`
                       : null
                   }
+                  movieId={movie.id}
                   movieName={movie.original_title}
                 />
               </React.Fragment>
@@ -77,8 +77,18 @@ const LandingPage = (props) => {
       </div>
       <br />
 
-      <div style={{ display: "flex", justifyContent: "center"}}>
-        <button style={{background: "#f44336", color:"white",width: 1000,height:50}} onClick={loadmoreItems}>Load More</button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          style={{
+            background: "#f44336",
+            color: "white",
+            width: 1000,
+            height: 50,
+          }}
+          onClick={loadmoreItems}
+        >
+          Load More
+        </button>
       </div>
     </div>
   );
