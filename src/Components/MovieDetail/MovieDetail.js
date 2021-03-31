@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import GridCards from "../GridCard/GridCard";
 import MovieInfo from "../MovieInfo/MovieInfo";
-import MainImage from "../Sections/MainImage";
-import { Row } from "antd";
+import MainImage from "../MainImage/MainImage";
 import Favorite from "../Favorite/Favorite";
+import { Row } from "antd";
+import "antd/dist/antd.css";
 
 function MovieDetail(props) {
   console.log(props.match);
@@ -39,9 +40,7 @@ function MovieDetail(props) {
   return (
     <div>
       {/* Header*/}
-      {Movie.backdrop_path && ( //Movie안의 backdrop_path를 가져오는데
-        //시간이 오래걸릴 수도있기때문에 근데 가져오는 도중에 렌더링을 할려고하여 오류가발생한다.
-        //이를 방지하기위한 코드(실제 콘솔에 이를안해주면 undefined라고 오류발생)
+      {Movie.backdrop_path && (
         <MainImage
           image={`${IMAGE_BASE_URL}w1280/${Movie.backdrop_path}`} //영화이미지
           title={Movie.original_title} //영화제목
@@ -51,10 +50,14 @@ function MovieDetail(props) {
 
       {/* Body*/}
       <div style={{ width: "85%", margin: "1rem auto" }}>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-         <Favorite></Favorite>
+        <div
+          style={{ display: "flex", justifyContent: "center", marginLeft: "30%" }}
+        >
+          <Favorite
+            movieInfo={Movie} //무비정보
+            movieId={movieId} //무비Id
+          />
         </div>
-
         {/* Movie Info*/}
 
         <MovieInfo movie={Movie} />
@@ -62,7 +65,7 @@ function MovieDetail(props) {
         <br />
         {/* Actors Grid*/}
         <div
-          style={{ display: "flex", justifyContent: "center", margin: "2rem" }}
+          style={{ display: "flex", justifyContent: "center", margin:"2rem" }}
         >
           <button
             onClick={toggleActorView}

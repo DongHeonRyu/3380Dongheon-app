@@ -1,5 +1,6 @@
 import React from "react";
-import { Descriptions, Badge } from 'antd';
+import { Descriptions} from 'antd';
+import 'antd/dist/antd.css';
 
 function MovieInfo(props) {
 
@@ -26,6 +27,8 @@ function MovieInfo(props) {
         {movie.popularity}
       </Descriptions.Item>
     </Descriptions>
+
+    
   );
 }
 
