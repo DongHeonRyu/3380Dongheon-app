@@ -22,14 +22,14 @@ function MovieDetail(props) {
     fetch(endpointInfo)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setMovie(response);
       });
 
     fetch(endpointCrew)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setCasts(response.cast);
       });
   }, []);
@@ -49,24 +49,20 @@ function MovieDetail(props) {
       )}
 
       {/* Body*/}
-      <div style={{ width: "85%", margin: "1rem auto" }}>
-        <div
-          style={{ display: "flex", justifyContent: "center", marginLeft: "30%" }}
-        >
+      <div style={{ width: "100%", margin: "1rem auto" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginLeft: "0%" }}>
           <Favorite
             movieInfo={Movie} //무비정보
             movieId={movieId} //무비Id
           />
         </div>
         {/* Movie Info*/}
-
+        <br></br>
         <MovieInfo movie={Movie} />
 
         <br />
         {/* Actors Grid*/}
-        <div
-          style={{ display: "flex", justifyContent: "center", margin:"2rem" }}
-        >
+        <div style={{ display: "flex", justifyContent: "center", margin: "2rem" }}>
           <button
             onClick={toggleActorView}
             style={{
@@ -87,11 +83,7 @@ function MovieDetail(props) {
               Casts.map((cast, index) => (
                 <React.Fragment key={index}>
                   <GridCards
-                    image={
-                      cast.profile_path
-                        ? `${IMAGE_BASE_URL}w500${cast.profile_path}`
-                        : null
-                    }
+                    image={cast.profile_path ? `${IMAGE_BASE_URL}w500${cast.profile_path}` : null}
                     characterName={cast.name}
                   />
                 </React.Fragment>

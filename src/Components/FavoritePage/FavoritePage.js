@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { getFavorite } from "../../service/service";
+import { deleteFavorite, editFavorite, getFavorite } from "../../service/service";
 import { Rate } from "antd";
 import "antd/dist/antd.css";
 
 function FavoritePage(props) {
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
   const [ratedMovie, setRatedMovie] = useState([]);
 
   useEffect(() => {
     refreshPage();
   }, []);
 
-  async function refreshPage() {
-    await getFavorite()
+  function refreshPage() {
+    getFavorite()
       .then((json) => {
         setRatedMovie(json);
       })
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  async function deleteMovie(e) {
+    await deleteFavorite(e.target.id);
+    refreshPage();
+  }
+
+  async function editMovie(e) {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    await editFavorite(id, value);
+    refreshPage();
   }
 
   return (
@@ -29,15 +43,39 @@ function FavoritePage(props) {
             <th>Movie Title</th>
             <th>Movie RunTime</th>
             <th>Rate</th>
+            <th>Delete</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
           {ratedMovie.map((item) => {
             return (
-              <tr>
+              <tr key={item._id}>
                 <td>{item.movieTitle}</td>
                 <td>{item.movieRunTime}</td>
-                
+                <td>
+                  <Rate value={item.movieRate} />
+                </td>
+                <td>
+                  <button className="btn btn-danger" onClick={deleteMovie} id={item.movieId}>
+                    Delete{" "}
+                  </button>
+                </td>
+                <td>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                    onChange={editMovie}
+                    id={item.movieId}
+                    defaultValue={item.movieRate}
+                  >
+                    <option value="1">1 star ({desc[0]})</option>
+                    <option value="2">2 star ({desc[1]})</option>
+                    <option value="3">3 star ({desc[2]})</option>
+                    <option value="4">4 star ({desc[3]})</option>
+                    <option value="5">5 star ({desc[4]})</option>
+                  </select>
+                </td>
               </tr>
             );
           })}

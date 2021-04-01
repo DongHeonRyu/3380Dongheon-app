@@ -1,70 +1,98 @@
 import React, { useEffect, useState } from "react";
 import { Button, Rate } from "antd";
 import "antd/dist/antd.css";
-import { addFavorite, getFavorite } from "../../service/service";
+import { addFavorite, getSpecific,editFavorite } from "../../service/service";
 
 function Favorite(props) {
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
-  const [data, setData] = useState();
+  const [ratedMovie, setRatedMovie] = useState([]);
   const [value, setValue] = useState();
-
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const movieId = props.movieId;
   const movieTitle = props.movieInfo.title;
   const movieRunTime = props.movieInfo.runtime;
 
-  // useEffect(() => {
-  //   refreshPage();
-  // }, []);
+  useEffect(() => {
+    refreshPage();
+  }, []);
 
-  // async function refreshPage() {
+  function refreshPage() {
+    getSpecific(movieId)
+      .then((json) => {
+        setRatedMovie(json);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 
-  //   await getFavorite()
-  //     .then((json) => {
-  //       setData(json.movieRate)
-  //       console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+data)
-
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-
-  //     });
-  // }
-
-  const handleChange = async (value) => {
-    if (!value) {
-      setValue(value);
-    }
+  const handleChange = async (e) => {
+    setValue(e.target.value);
 
     let variables = {
       movieId: movieId,
       movieTitle: movieTitle,
       movieRunTime: movieRunTime,
-      movieRate: value,
+      movieRate: e.target.value
     };
 
     await addFavorite(variables);
   };
 
+  async function editMovie(e) {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    await editFavorite(id, value);
+    refreshPage();
+  }
+
   return (
-    <table className="table">
-      <thead>
-        <th scope="col">
-          <h4>
-            Rate this movie: <Rate tooltips={desc} onChange={handleChange} value={value} />
-            {value ? (
-              <span className="ant-rate-text">
-                <h4>{desc[value - 1]} </h4>
-              </span>
+    <table className="table table-bordered">
+      <tbody>
+        <tr>
+          <th>
+            Rate this movie:{" "}
+            {ratedMovie ? (
+              <Rate tooltips={desc} value={ratedMovie.movieRate} />
             ) : (
-              ""
+              <Rate tooltips={desc} value={value} />
             )}
-          </h4>
-        </th>
-      </thead>
+          </th>
+          <th>
+            {ratedMovie ? (
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={editMovie}
+                id={movieId}
+                value={ratedMovie.movieRate}
+              >
+                <option value="1">1 star ({desc[0]})</option>
+                <option value="2">2 star ({desc[1]})</option>
+                <option value="3">3 star ({desc[2]})</option>
+                <option value="4">4 star ({desc[3]})</option>
+                <option value="5">5 star ({desc[4]})</option>
+              </select>
+            ) : (
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                onChange={handleChange}
+                id={movieId}
+                
+              >
+                <option value="1">1 star ({desc[0]})</option>
+                <option value="2">2 star ({desc[1]})</option>
+                <option value="3">3 star ({desc[2]})</option>
+                <option value="4">4 star ({desc[3]})</option>
+                <option value="5">5 star ({desc[4]})</option>
+              </select>
+            )}
+          </th>
+        </tr>
+      </tbody>
     </table>
   );
 }
