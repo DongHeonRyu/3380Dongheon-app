@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Rate } from "antd";
+import { Rate } from "antd";
 import "antd/dist/antd.css";
-import { addFavorite, getSpecific,editFavorite } from "../../service/service";
+import { addFavorite, getSpecific, editFavorite } from "../../service/service";
 
 function Favorite(props) {
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
@@ -28,16 +28,21 @@ function Favorite(props) {
   }
 
   const handleChange = async (e) => {
+    window.location.reload();
+
     setValue(e.target.value);
 
     let variables = {
       movieId: movieId,
       movieTitle: movieTitle,
       movieRunTime: movieRunTime,
-      movieRate: e.target.value
+      movieRate: e.target.value,
+      movieComment: "",
     };
 
     await addFavorite(variables);
+    
+    refreshPage();
   };
 
   async function editMovie(e) {
@@ -81,7 +86,6 @@ function Favorite(props) {
                 aria-label="Default select example"
                 onChange={handleChange}
                 id={movieId}
-                
               >
                 <option value="1">1 star ({desc[0]})</option>
                 <option value="2">2 star ({desc[1]})</option>

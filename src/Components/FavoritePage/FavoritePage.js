@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { deleteFavorite, editFavorite, getFavorite } from "../../service/service";
 import { Rate } from "antd";
 import "antd/dist/antd.css";
+import { Link } from "react-router-dom";
 
 function FavoritePage(props) {
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
@@ -44,14 +45,20 @@ function FavoritePage(props) {
             <th>Movie RunTime</th>
             <th>Rate</th>
             <th>Delete</th>
-            <th>Edit</th>
+            <th>Edit Rate</th>
+            <th>70 Words Comment</th>
           </tr>
         </thead>
         <tbody>
           {ratedMovie.map((item) => {
             return (
               <tr key={item._id}>
-                <td>{item.movieTitle}</td>
+                <td>
+                  {" "}
+                  <Link to={`/movie/${item.movieId}`} className="navbar-brand">
+                    {item.movieTitle}
+                  </Link>
+                </td>
                 <td>{item.movieRunTime}</td>
                 <td>
                   <Rate value={item.movieRate} />
@@ -76,6 +83,7 @@ function FavoritePage(props) {
                     <option value="5">5 star ({desc[4]})</option>
                   </select>
                 </td>
+                <td>{item.movieComment}</td>
               </tr>
             );
           })}

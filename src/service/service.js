@@ -43,3 +43,13 @@ export async function editFavorite(movieId, movieRate) {
     body: editMovie
   }).then((response) => response.json());
 }
+
+export async function editComment(movieId, movieComment) {
+  const editMovieComment = JSON.stringify({ movieId: movieId, movieComment: movieComment });
+
+  return fetch(`${process.env.REACT_APP_API_BASE_URL}/ratemovie/editcomment`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: editMovieComment
+  }).then((response) => response.json());
+}

@@ -6,6 +6,7 @@ import MainImage from "../MainImage/MainImage";
 import Favorite from "../Favorite/Favorite";
 import { Row } from "antd";
 import "antd/dist/antd.css";
+import MovieComment from "../MovieComment/MovieComment";
 
 function MovieDetail(props) {
   console.log(props.match);
@@ -56,6 +57,11 @@ function MovieDetail(props) {
             movieId={movieId} //무비Id
           />
         </div>
+
+        {/* Movie Comment*/}
+        <br></br>
+        <MovieComment movieInfo={Movie} movieId={movieId} />
+
         {/* Movie Info*/}
         <br></br>
         <MovieInfo movie={Movie} />
