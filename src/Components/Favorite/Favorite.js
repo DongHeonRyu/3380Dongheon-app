@@ -25,6 +25,7 @@ function Favorite(props) {
       .then((json) => {
         setRatedMovie(json);
         //Prevent duplicate error
+        
         setSelectedDisabled(false);
       })
       .catch((err) => {
