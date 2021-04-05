@@ -24,6 +24,7 @@ function MovieDetail(props) {
       .then((response) => response.json())
       .then((response) => {
         // console.log(response);
+        
         setMovie(response);
       });
 
