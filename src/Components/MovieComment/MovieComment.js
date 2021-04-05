@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Descriptions } from "antd";
 import "antd/dist/antd.css";
 import { addFavorite, getSpecific, editComment } from "../../service/service";
-import "../MovieComment/comment.css";
+import "./comment.css";
 
 function MovieComment(props) {
   const [ratedMovie, setRatedMovie] = useState([]);
@@ -28,10 +28,11 @@ function MovieComment(props) {
 
   const userInput = (e) => {
     setmComment(e.target.value);
+    refreshPage();
   };
 
   const handleChange = async () => {
-    window.location.reload();
+    refreshPage();
 
     let variables = {
       movieId: movieId,
@@ -42,7 +43,6 @@ function MovieComment(props) {
     };
 
     await addFavorite(variables);
-    refreshPage();
   };
 
   async function editMovie() {
@@ -56,58 +56,60 @@ function MovieComment(props) {
   return (
     <Descriptions title="Movie Comment" bordered>
       <div className="d-flex justify-content-center">
-      <table id="commentTable">
-        <thead>
-          <th><h3>{ratedMovie ? <div>{ratedMovie.movieComment}</div> : <div>{mComment}</div>}</h3></th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              
-              {ratedMovie ? (
-                <div className="input-group mb-1">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Write 70 words comment"
-                    onChange={userInput}
-                    maxlength="70"
-                    aria-describedby="button-addon2"
-                  />
-                  <button
-                    className="btn btn-outline-secondary"
-                    type="button"
-                    id="button-addon2"
-                    onClick={editMovie}
-                  >
-                    Submit
-                  </button>
-                </div>
-              ) : (
-                <div className="input-group mb-1">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Write 70 words comment"
-                    onChange={userInput}
-                    maxlength="70"
-                    aria-describedby="button-addon2"
-                  />
-                  <button
-                    className="btn btn-outline-secondary"
-                    type="button"
-                    id="button-addon2"
-                    onClick={handleChange}
-                  >
-                    Submit
-                  </button>
-                </div>
-              )}
-          
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table id="commentTable">
+          <thead>
+            <tr>
+              <th>
+                <h3>{ratedMovie ? <div>{ratedMovie.movieComment}</div> : <div>{mComment}</div>}</h3>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {ratedMovie ? (
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Write 70 words comment"
+                      onChange={userInput}
+                      maxLength="70"
+                      aria-describedby="button-addon2"
+                    />
+                    <button
+                      className="btn btn-outline-secondary"
+                      type="button"
+                      id="button-addon2"
+                      onClick={editMovie}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                ) : (
+                  <div className="input-group mb-1">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Write 70 words comment"
+                      onChange={userInput}
+                      maxLength="70"
+                      aria-describedby="button-addon2"
+                    />
+                    <button
+                      className="btn btn-outline-secondary"
+                      type="button"
+                      id="button-addon2"
+                      onClick={handleChange}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                )}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </Descriptions>
   );

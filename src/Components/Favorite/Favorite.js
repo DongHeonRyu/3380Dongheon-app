@@ -8,6 +8,7 @@ function Favorite(props) {
 
   const [ratedMovie, setRatedMovie] = useState([]);
   const [value, setValue] = useState();
+  const [selectedDisabled, setSelectedDisabled] = useState();
 
   const movieId = props.movieId;
   const movieTitle = props.movieInfo.title;
@@ -18,9 +19,13 @@ function Favorite(props) {
   }, []);
 
   function refreshPage() {
+
+    
     getSpecific(movieId)
       .then((json) => {
         setRatedMovie(json);
+        //Prevent duplicate error
+        setSelectedDisabled(false);
       })
       .catch((err) => {
         console.error(err);
@@ -28,9 +33,9 @@ function Favorite(props) {
   }
 
   const handleChange = async (e) => {
-    window.location.reload();
-
+    
     setValue(e.target.value);
+    refreshPage();
 
     let variables = {
       movieId: movieId,
@@ -40,12 +45,15 @@ function Favorite(props) {
       movieComment: "",
     };
 
-    await addFavorite(variables);
+    setSelectedDisabled(true);
     
+    await addFavorite(variables);
+
     refreshPage();
   };
 
   async function editMovie(e) {
+
     const id = e.target.id;
     const value = e.target.value;
 
@@ -72,8 +80,10 @@ function Favorite(props) {
                 aria-label="Default select example"
                 onChange={editMovie}
                 id={movieId}
-                value={ratedMovie.movieRate}
+                defaultValue={ratedMovie.movieRate}
+                disabled={selectedDisabled}
               >
+                <option>Choose a rating</option>
                 <option value="1">1 star ({desc[0]})</option>
                 <option value="2">2 star ({desc[1]})</option>
                 <option value="3">3 star ({desc[2]})</option>
@@ -86,7 +96,9 @@ function Favorite(props) {
                 aria-label="Default select example"
                 onChange={handleChange}
                 id={movieId}
+                disabled={selectedDisabled}                
               >
+                <option>Choose a rating</option>
                 <option value="1">1 star ({desc[0]})</option>
                 <option value="2">2 star ({desc[1]})</option>
                 <option value="3">3 star ({desc[2]})</option>
