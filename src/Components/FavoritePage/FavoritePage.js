@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteFavorite, editFavorite, getFavorite } from "../../Service/service";
+import { deleteFavorite, editFavorite, getFavorite } from "../../service/service";
 import { Rate } from "antd";
 import "antd/dist/antd.css";
 import { Link } from "react-router-dom";

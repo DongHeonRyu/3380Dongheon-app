@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Descriptions } from "antd";
 import "antd/dist/antd.css";
-import { addFavorite, getSpecific, editComment } from "../../Service/service";
+import { addFavorite, getSpecific, editComment } from "../../service/service";
 import "./comment.css";
 
 function MovieComment(props) {
