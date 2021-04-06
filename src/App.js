@@ -1,4 +1,3 @@
-import Footer from "./components/footer/Footer";
 import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import LandingPage from "./components/landingPage/LandingPage";
@@ -15,9 +14,8 @@ function App(props) {
           <Route exact path="/" component={LandingPage} />
 
           <Route exact path="/movie/:movieId" component={MovieDetail} />
-          <Route exact path="/favoritePage" component={FavoritePage}/>
+          <Route exact path="/favoritePage" component={FavoritePage} />
         </Switch>
-        <Footer />
       </BrowserRouter>
     </div>
   );
