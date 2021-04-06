@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
-import GridCards from "../gridCard/GridCard";
-import MovieInfo from "../movieInfo/MovieInfo";
-import MainImage from "../mainImage/MainImage";
-import Favorite from "../favorite/Favorite";
+import GridCards from "../GridCard/GridCard";
+import MovieInfo from "../MovieInfo/MovieInfo";
+import MainImage from "../MainImage/MainImage";
+import Favorite from "../Favorite/Favorite";
 import { Row } from "antd";
 import "antd/dist/antd.css";
-import MovieComment from "../movieComment/MovieComment";
+import MovieComment from "../MovieComment/MovieComment";
 
 function MovieDetail(props) {
   console.log(props.match);

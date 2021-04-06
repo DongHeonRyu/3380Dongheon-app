@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-import LandingPage from "./components/landingPage/LandingPage";
-import MovieDetail from "./components/movieDetail/MovieDetail";
-import NavBar from "./components/navBar/NavBar";
-import FavoritePage from "./components/favoritePage/FavoritePage";
+import LandingPage from "./Components/LandingPage/LandingPage";
+import MovieDetail from "./Components/MovieDetail/MovieDetail";
+import NavBar from "./Components/NavBar/NavBar";
+import FavoritePage from "./Components/FavoritePage/FavoritePage";
 
 function App(props) {
   return (

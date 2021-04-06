@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Rate } from "antd";
 import "antd/dist/antd.css";
-import { addFavorite, getSpecific, editFavorite } from "../../service/service";
+import { addFavorite, getSpecific, editFavorite } from "../../Service/service";
 
 function Favorite(props) {
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
