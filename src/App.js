@@ -4,6 +4,7 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 import MovieDetail from "./Components/MovieDetail/MovieDetail";
 import NavBar from "./Components/NavBar/NavBar";
 import FavoritePage from "./Components/FavoritePage/FavoritePage";
+import PageFooter from "./Components/PageFooter/PageFooter";
 
 function App(props) {
   return (
@@ -16,6 +17,7 @@ function App(props) {
           <Route exact path="/movie/:movieId" component={MovieDetail} />
           <Route exact path="/favoritePage" component={FavoritePage} />
         </Switch>
+        <PageFooter/>
       </BrowserRouter>
     </div>
   );
