@@ -30,7 +30,7 @@ function NavBar(props) {
           />
         </button>
 
-        {toggle ? <Ham_Btn /> : <div />}
+        {toggle ? <Ham_Btn changeToggle={changeToggle}/> : <div />}
       </div>
 
       <div className="navbar-btn-container">
