@@ -34,6 +34,10 @@ nav{
 
 }
 
+.form-select_mobile{
+    display: none;
+}
+
 
 
 /* Tablet View */
@@ -98,6 +102,12 @@ nav{
     .comments{
         display: none;
     }
+    .form-select{
+        display: none;
+    }
 
+    .form-select_mobile{
+        display: inline;
+    }
 
 }

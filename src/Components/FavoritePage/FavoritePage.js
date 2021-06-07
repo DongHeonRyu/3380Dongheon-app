@@ -71,7 +71,8 @@ function FavoritePage(props) {
                   </button>
                 </td>
                 <td>
-                  <select
+
+                  <select 
                     className="form-select"
                     aria-label="Default select example"
                     onChange={editMovie}
@@ -83,7 +84,27 @@ function FavoritePage(props) {
                     <option value="3">3 star ({desc[2]})</option>
                     <option value="4">4 star ({desc[3]})</option>
                     <option value="5">5 star ({desc[4]})</option>
+                    
                   </select>
+
+                                    
+                  <select
+                    className="form-select_mobile"
+                    aria-label="Default select example"
+                    onChange={editMovie}
+                    id={item.movieId}
+                    defaultValue={item.movieRate}
+                  >
+                    <option value="1">1 </option>
+                    <option value="2">2 </option>
+                    <option value="3">3 </option>
+                    <option value="4">4 </option>
+                    <option value="5">5 </option>
+                    
+                  </select>
+
+
+
                 </td>
                 <td className="comments">{item.movieComment}</td>
               </tr>
