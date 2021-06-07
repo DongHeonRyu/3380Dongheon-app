@@ -38,6 +38,11 @@ nav{
     display: none;
 }
 
+/* delete btn */
+
+.delete{
+    text-align: center;
+}
 
 
 /* Tablet View */

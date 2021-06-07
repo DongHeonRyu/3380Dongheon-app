@@ -65,8 +65,8 @@ function FavoritePage(props) {
                 <td>
                   <Rate value={item.movieRate} />
                 </td>
-                <td>
-                  <button className="btn btn-danger" onClick={deleteMovie} id={item.movieId}>
+                <td className="delete">
+                  <button className="btn btn-danger" onClick={deleteMovie} id={item.movieId} >
                     Delete{" "}
                   </button>
                 </td>
