@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../Img/logo.gif";
+import ham_nav_menu from "../../Img/icon-burger-menu.svg";
+import "../NavBar/navStyle.css";
+import Ham_Btn from "../ham_btn/Ham_Btn";
 
 function NavBar(props) {
-  return (
-    <nav className="navbar navbar-light bg-light">
-      <div className="container-fluid">
-        <img src={logo} width="50" height="50" alt="" />
-        <div></div>
+  const [toggle, setToggle] = useState(false);
 
-        <Link to="/" className="navbar-brand">
-          {" "}
-          <h1>Don's Movie Review</h1>
+  const changeToggle = () => {
+    setToggle(!toggle);
+  };
+
+  return (
+    <nav>
+      <div className="logo">
+        <img src={logo} alt="Movie Logo" width="50" height="50" />
+        <span>Don Movie Review App</span>
+      </div>
+
+      <div className="hamburger-menu">
+        <button>
+          <img
+            src={ham_nav_menu}
+            alt="menu"
+            width="50"
+            height="50"
+            onClick={changeToggle}
+          />
+        </button>
+
+        {toggle ? <Ham_Btn /> : <div />}
+      </div>
+
+      <div className="navbar-btn-container">
+        <Link to="/" className="navbar-btn">
+          Home
         </Link>
 
-        <form className="d-flex">
-          <button className="navbar-toggler" type="button">
-            <Link to="/" className="navbar-brand">
-              Home
-            </Link>
-          </button>
-          <button className="navbar-toggler" type="button">
-          <Link to="/favoritePage" className="navbar-brand">
-            My Rated Movie
-            </Link>
-          </button>
-        </form>
+        <Link to="/favoritePage" className="navbar-btn">
+          My M-List
+        </Link>
       </div>
     </nav>
   );

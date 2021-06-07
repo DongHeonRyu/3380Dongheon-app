@@ -9,10 +9,9 @@ export async function getSpecific(movieId) {
   return fetch(`${process.env.REACT_APP_API_BASE_URL}/ratemovie/find`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: getMovieData
+    body: getMovieData,
   }).then((response) => response.json());
 }
-
 
 export async function addFavorite(variables) {
   const addRatedMovie = JSON.stringify(variables);
@@ -40,7 +39,7 @@ export async function editFavorite(movieId, movieRate) {
   return fetch(`${process.env.REACT_APP_API_BASE_URL}/ratemovie/edit`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: editMovie
+    body: editMovie,
   }).then((response) => response.json());
 }
 
@@ -50,6 +49,6 @@ export async function editComment(movieId, movieComment) {
   return fetch(`${process.env.REACT_APP_API_BASE_URL}/ratemovie/editcomment`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: editMovieComment
+    body: editMovieComment,
   }).then((response) => response.json());
 }

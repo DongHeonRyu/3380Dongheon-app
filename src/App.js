@@ -8,7 +8,7 @@ import PageFooter from "./Components/PageFooter/PageFooter";
 
 function App(props) {
   return (
-    <div style={{ paddingTop: "69px", minHeight: "calc(100vh - 80px)" }}>
+    <div style={{ minHeight: "calc(100vh - 80px)" }}>
       <BrowserRouter>
         <NavBar />
         <Switch>

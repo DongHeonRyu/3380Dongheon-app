@@ -3,6 +3,8 @@ import { deleteFavorite, editFavorite, getFavorite } from "../../service/service
 import { Rate } from "antd";
 import "antd/dist/antd.css";
 import { Link } from "react-router-dom";
+import "../NavBar/navStyle.css";
+
 
 function FavoritePage(props) {
   const desc = ["terrible", "bad", "normal", "good", "wonderful"];
@@ -36,9 +38,9 @@ function FavoritePage(props) {
   }
 
   return (
-    <div style={{ width: "85%", margin: "3rem auto" }}>
+    <div style={{ margin: "auto" }}>
       <h3 style={{ textAlign: "center" }}>My Favorite Movies</h3>
-      <table className="table table-bordered">
+      <table className="table-bordered">
         <thead>
           <tr>
             <th>Movie Title</th>
@@ -46,7 +48,7 @@ function FavoritePage(props) {
             <th>Rate</th>
             <th>Delete</th>
             <th>Edit Rate</th>
-            <th>70 Words Comment</th>
+            <th className="comments">70 Words Comment</th>
           </tr>
         </thead>
         <tbody>
@@ -83,7 +85,7 @@ function FavoritePage(props) {
                     <option value="5">5 star ({desc[4]})</option>
                   </select>
                 </td>
-                <td>{item.movieComment}</td>
+                <td className="comments">{item.movieComment}</td>
               </tr>
             );
           })}

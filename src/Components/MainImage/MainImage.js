@@ -1,4 +1,5 @@
 import React from 'react';
+import "../NavBar/navStyle.css";
 
 function MainImage(props) {
   return (
@@ -26,7 +27,7 @@ function MainImage(props) {
           }}
         >
           <h2 style={{ color: 'white' }}> {props.title}</h2>
-          <p style={{ color: 'white', fontSize: '1rem' }}>{props.text}</p>
+          <p className="mainImage-text" style={{ color: 'white', fontSize: '1rem' }}>{props.text}</p>
         </div>
       </div>
     </div>
