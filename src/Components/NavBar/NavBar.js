@@ -14,10 +14,15 @@ function NavBar(props) {
 
   return (
     <nav>
+
       <div className="logo">
-        <img src={logo} alt="Movie Logo" width="50" height="50" />
-        <span>Don Movie Review App</span>
+        <Link to="/">
+          <img src={logo} alt="Movie Logo" width="50" height="50" />
+          <span style={{color:"black"}}>Don Movie Review App</span>
+        </Link>
       </div>
+
+
 
       <div className="hamburger-menu">
         <button>
@@ -30,7 +35,7 @@ function NavBar(props) {
           />
         </button>
 
-        {toggle ? <Ham_Btn changeToggle={changeToggle}/> : <div />}
+        {toggle ? <Ham_Btn changeToggle={changeToggle} /> : <div />}
       </div>
 
       <div className="navbar-btn-container">

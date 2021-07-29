@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { deleteFavorite, editFavorite, getFavorite } from "../../service/service";
-import { Rate } from "antd";
+
 import "antd/dist/antd.css";
-import { Link } from "react-router-dom";
+
 import "../NavBar/navStyle.css";
+import FavoritePage_Elements from "../../Components/FavoritePage_Elements/FavoritePage_Elements"
+
 
 
 function FavoritePage(props) {
@@ -40,76 +42,25 @@ function FavoritePage(props) {
   return (
     <div style={{ margin: "auto" }}>
       <h3 style={{ textAlign: "center" }}>My Favorite Movies</h3>
-      <table className="table-bordered">
+      <table className="table table-borderless">
         <thead>
           <tr>
-            <th>Movie Title</th>
-            <th>Movie RunTime</th>
-            <th>Rate</th>
-            <th>Delete</th>
-            <th>Edit Rate</th>
+            <th scope="col">Movie Title</th>
+            <th scope="col">Movie RunTime</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit Rate</th>
             <th className="comments">70 Words Comment</th>
           </tr>
         </thead>
         <tbody>
-          {ratedMovie.map((item) => {
-            return (
-              <tr key={item._id}>
-                <td>
-                  {" "}
-                  <Link to={`/movie/${item.movieId}`} className="navbar-brand">
-                    {item.movieTitle}
-                  </Link>
-                </td>
-                <td>{item.movieRunTime}</td>
-                <td>
-                  <Rate value={item.movieRate} />
-                </td>
-                <td className="delete">
-                  <button className="btn btn-danger" onClick={deleteMovie} id={item.movieId} >
-                    Delete{" "}
-                  </button>
-                </td>
-                <td>
-
-                  <select 
-                    className="form-select"
-                    aria-label="Default select example"
-                    onChange={editMovie}
-                    id={item.movieId}
-                    defaultValue={item.movieRate}
-                  >
-                    <option value="1">1 star ({desc[0]})</option>
-                    <option value="2">2 star ({desc[1]})</option>
-                    <option value="3">3 star ({desc[2]})</option>
-                    <option value="4">4 star ({desc[3]})</option>
-                    <option value="5">5 star ({desc[4]})</option>
-                    
-                  </select>
-
-                                    
-                  <select
-                    className="form-select_mobile"
-                    aria-label="Default select example"
-                    onChange={editMovie}
-                    id={item.movieId}
-                    defaultValue={item.movieRate}
-                  >
-                    <option value="1">1 </option>
-                    <option value="2">2 </option>
-                    <option value="3">3 </option>
-                    <option value="4">4 </option>
-                    <option value="5">5 </option>
-                    
-                  </select>
 
 
+          <FavoritePage_Elements
+            ratedMovie={ratedMovie} desc={desc}
+            deleteMovie={deleteMovie} editMovie={editMovie} />
 
-                </td>
-                <td className="comments">{item.movieComment}</td>
-              </tr>
-            );
-          })}
+
         </tbody>
       </table>
     </div>

@@ -1,0 +1,62 @@
+.element{
+    font-size:40px;
+    font-weight: 600;
+}
+
+.elementTitle {
+    max-width: 700px;
+    
+}
+
+.phoneView {
+    display: none;
+}
+
+.elementRatePhone {
+    display: none;
+}
+
+.ipadView {
+    display: none;
+}
+
+/* tablet view */
+
+@media(max-width:1024px) {
+
+    .element{
+        font-size:20px;
+        font-weight: 700;
+    }
+    .elementTitle {
+        display: none;
+    }
+    .comments {
+        display: none;
+    }
+    .ipadView {
+        display: inline;
+    }
+}
+
+/* Phone View */
+
+@media(max-width:450px) {
+    .elementTitle {
+        display: none;
+    }
+    .phoneView {
+        padding-top: 10px;
+        display: inline-block;
+    }
+    .elementRate{
+        display: none;
+    }
+    .elementRatePhone {
+        padding-top: 10px;
+        display: inline-block;
+    }
+    .ipadView {
+        display: none;
+    }
+}
